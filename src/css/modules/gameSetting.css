@@ -1,0 +1,75 @@
+#gameSetting {
+	display: none;
+}
+
+#gearIcon {
+	position: absolute;
+	bottom: 1vh;
+	right: 1vw;
+}
+
+#settingPanel {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 102;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(30, 30, 30, 0.8);
+}
+
+#settingControl {
+	width: 500px;
+	height: 500px;
+	background-color: rgba(165, 165, 165, 0.5);
+	border: 6px solid rgba(165, 165, 165, 1.0);
+	border-radius: 10px;
+}
+
+#settingTitle {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+#settingMain {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.settingOptions {
+	margin-bottom: 20px;
+}
+
+.settingOne {
+	margin-bottom: 5vh;
+}
+
+#setting-btns {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+#setting-btns button{
+	width: 100px;
+	height: 50px;
+	background-color: #ff590c;
+	color: white;
+	font-size: 1em;
+	border: none;	
+	font-weight: 400;
+	border-radius: 5px;
+	margin-right: 1vw;
+}
+
+#setting-btns button:active{
+	background-color: #b8b8b8;
+	color: #111;
+}
