@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Racing Game</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+		tailwind.config = {
+			theme: {
+				extend: {
+					colors: {
+						primary: '#FB6628',
+						'primary-hover': '#fb7828',
+						secondary: '#64C9E1',
+						'secondary-hover': '#3EAEC9',
+						third: '#E33636',
+						black1: '#1E2E40',
+						'black1-hover': '#111A24',
+						black2: '#294360',
+					}
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="header">
+		<div class="fixed top-0 left-[-9px] flex w-[300px] text-white flex flex-col -skew-x-12 items-center">
+			<img src="src/img/logo.png" width="100px" class="fixed top-0 left-0 z-10 skew-x-12 ml-2">
+			<div class="p-3 bg-black1 w-full">
+				<h2 class="pl-28 font-bold">PLAYER</h2>
+			</div>
+			<div class="px-3 py-1 bg-secondary w-full mr-2">
+				<p class="pl-28 text-xs">WALLET ID: 123,456,789</p>
+			</div>
+		</div>
+		<div class="fixed top-0 right-[-9px] flex text-white -skew-x-12 items-center bg-black1 px-6">
+			<div class="flex justify-center gap-3">
+				<div class="flex flex-row p-1 m-2 gap-1 bg-black2 skew-x-12">
+					<img src="src/img/s.svg" width="20px" />
+					<label for="ticket-value">50</label>
+				</div>
+				<div class="flex flex-row p-1 m-2 gap-1 bg-black2 skew-x-12">
+					<img src="src/img/s.svg" width="20px" />
+					<label for="ticket-value">1000</label>
+				</div>
+				<div class="p-2">
+					<button class="bg-primary text-white px-2 py-1 hover:bg-primary-hover">
+						CLAIM
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="username" class="fixed top-1/2 left-1/2 transform translate-x-[-66%] translate-y-[-70%]">
+		<div class="-skew-x-12 bg-primary rounded-2xl rounded-tl-none w-[300px] h-[200px] p-4 pl-6">
+			<p class="font-bold text-xl">INPUT YOUR NAME</p>
+		</div>
+		<div
+			class="absolute top-14 left-0.5 -skew-x-12 bg-black1 rounded-2xl rounded-tl-none w-[400px] h-[140px] content-center">
+		</div>
+		<div class="absolute top-16 -skew-x-12 bg-secondary rounded-2xl rounded-tl-none w-[400px] h-[140px] content-center">
+			<div class="flex justify-center">
+				<input id="username-input" type="text" class="p-2 text-black outline-none placeholder-black1" type="text"
+					placeholder="Input your name" />
+				<button id="username-button" class="bg-black1 text-white px-8 py-1 hover:bg-black1-hover font-bold">
+					OK
+				</button>
+			</div>
+		</div>
+	</div>
+	<div id="roomDiv"
+		class="tabs fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] w-[650px] hidden">
+		<div class="tabs-nav list-none items-center">
+			<li class="tab-active">
+				<a href="#gameRooms" id="matchMaker"
+					class="rounded-se-2xl bg-primary hover:bg-primary-hover px-10 py-4 right-skew-top-right-radius-border text-xl">
+					JOIN GAME
+				</a>
+			</li>
+			<li>
+				<a href="#createRoom" class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-6">New
+					Race
+				</a>
+			</li>
+		</div>
+		<div class="tabs-stage">
+			<div id="gameRooms" class="rounded-se-[40px] overflow-hidden">
+				<table class="w-full">
+					<thead class="rounded-se-2xl bg-secondary-hover h-[40px]">
+						<tr>
+							<th class="w-1/5">Race ID</th>
+							<th class="w-1/5 bg-secondary -skew-x-12">FEE</th>
+							<th class="w-1/5">PLAYERS</th>
+							<th class="w-1/5 bg-secondary -skew-x-12">Creator</th>
+							<th class="w-1/5">PING</th>
+						</tr>
+					</thead>
+					<tbody id="gameRoomTableBody">
+					</tbody>
+				</table>
+				<span class="flex items-center">
+					<button class="h-[60px] w-[450px] bg-black1 right-skew-bottom-left-radius-border"></button>
+					<button id="joinOrCreateRoomBtn"
+						class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-10 ml-10">Start</button>
+				</span>
+			</div>
+			<div id="createRoom">
+				<span class="w-[650px] h-[35px] bg-secondary rounded-ss-2xl text-center p-1">
+					ENTER THE NUMBER OF TICKETS PER RACE
+				</span>
+				<span class="w-[650px] h-[150px] bg-black1 border-0 grid content-center justify-center">
+					<span class="flex items-center justify-center bg-white -skew-x-12">
+						<button class="bg-primary hover:bg-primary-hover text-white font-bold px-4 py-2 focus:outline-none text-2xl"
+							id="ticketPlus">
+							+
+						</button>
+						<input id="feeValue" type="text" class="w-24 text-center bg-white mx-4 text-black1" value="20 tickets"
+							readonly>
+						<button class="bg-primary hover:bg-primary-hover text-white font-bold px-4 py-2 focus:outline-none text-2xl"
+							id="ticketMinus">
+							-
+						</button>
+					</span>
+				</span>
+				<span class="flex items-center">
+					<button class="h-[60px] w-[450px] bg-black1 right-skew-bottom-left-radius-border border-0"></button>
+					<button id="createGameRoom"
+						class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-10 ml-10">Create</button>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="selector">
+		<div id="characterSelector">CHARACTER</div>
+		<div id="vehicleSelector">VEHICLE</div>
+	</div>
+
+	<div id="configuratorContainer">
+		<div id="configurator"></div>
+		<button id="confirmSelect">Okay</button>
+	</div>
+
+	<div id="wallet-page"
+		class="fixed top-1/2 left-1/2 transform translate-x-[-66%] translate-y-[-70%] hidden flex flex-col">
+		<div>
+			<div class="-skew-x-12 bg-primary rounded-2xl rounded-tl-none w-[300px] h-[200px] p-4 pl-6">
+				<p class="font-bold text-xl">BUY TICKETS</p>
+			</div>
+			<div
+				class="absolute top-14 left-0.5 -skew-x-12 bg-black1 rounded-2xl rounded-tl-none w-[400px] h-[140px] content-center">
+			</div>
+			<div
+				class="absolute top-16 -skew-x-12 bg-secondary rounded-2xl rounded-tl-none w-[400px] h-[140px] content-center">
+				<div class="flex justify-center">
+					<input name="ticket-number" type="text" class="p-2 text-black outline-none placeholder-black1" type="text"
+						placeholder="Input ticket number" />
+					<button id="btn-stash" class="bg-black1 text-white px-8 py-1 hover:bg-black1-hover font-bold">
+						buy
+					</button>
+				</div>
+			</div>
+		</div>
+		<div>
+			<!-- <a id="btn-wallet">Connect Wallet</a> -->
+			<a>Connect Wallet</a>
+		</div>
+	</div>
+
+	<div id="join-status"
+		class="fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] w-[650px] flex flex-col hidden">
+		<div
+			class="rounded-se-2xl bg-primary hover:bg-primary-hover px-10 py-4 right-skew-top-right-radius-border text-2xl w-[450px] grid justify-items-center">
+			<span class="-skew-x-12">
+				Waiting for players
+			</span>
+		</div>
+		<div class="rounded-se-[70px] overflow-hidden">
+			<table class="w-full">
+				<tbody>
+					<tr class="bg-black1">
+						<td colspan="2">
+							<div class="flex items-center py-4 ps-10 gap-20">
+								<div class="loader"></div>
+								<span>Waiting ...</span>
+							</div>
+						</td>
+					</tr>
+					<tr class="bg-black2">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-xl">Alex</span>
+						</td>
+					</tr>
+					<tr class="bg-black1">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-xl">Robert</span>
+						</td>
+					</tr>
+					<tr class="bg-black2">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-xl">Yashiro</span>
+						</td>
+					</tr>
+					<tr class="bg-black1">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-xl">Nishan</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="grid justify-items-center">
+			<button id="btn-join-status"
+				class="-skew-x-12 bg-primary text-white p-4 hover:bg-primary-hover px-10 m-6 text-xl">Ready</button>
+		</div>
+	</div>
+
+	<div id="race" class="fixed top-1/2 left-1/2 transform translate-x-[-66%] translate-y-[-70%] flex flex-col hidden">
+		<div class="-skew-x-12 bg-primary rounded-2xl rounded-tl-none w-[380px] h-[190px] p-4 flex justify-center">
+			<p class="font-bold text-xl">Get Ready to Race!</p>
+		</div>
+		<div class="absolute top-16 -skew-x-12 bg-secondary rounded-2xl w-[400px] h-[140px] content-center">
+			<div class="flex justify-center">
+				<button id="btn-race" class="bg-black1 text-white px-8 py-3 hover:bg-black1-hover font-bold">
+					Start
+				</button>
+			</div>
+		</div>
+	</div>
+	<div id="ready"
+		class="fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] w-[650px] flex flex-col hidden">
+		<div
+			class="rounded-se-2xl bg-primary hover:bg-primary-hover px-10 py-4 right-skew-top-right-radius-border text-2xl w-[450px] grid justify-items-center">
+			<span class="-skew-x-12">
+				Waiting for players
+			</span>
+		</div>
+		<div class="rounded-se-[70px] overflow-hidden">
+			<table class="w-full">
+				<tbody>
+					<tr class="bg-black1">
+						<td colspan="2">
+							<div class="flex items-center py-4 ps-10 gap-20">
+								<div class="loader"></div>
+								<span>Waiting ...</span>
+							</div>
+						</td>
+					</tr>
+					<tr class="bg-black2">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-xl">Alex</span>
+						</td>
+					</tr>
+					<tr class="bg-black1">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-xl">Robert</span>
+						</td>
+					</tr>
+					<tr class="bg-black2">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-xl">Yashiro</span>
+						</td>
+					</tr>
+					<tr class="bg-black1">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-xl">Nishan</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="grid justify-items-center">
+			<button id="btn-ready"
+				class="-skew-x-12 bg-primary text-white p-4 hover:bg-primary-hover px-10 m-6 text-xl">Ready</button>
+		</div>
+	</div>
+
+	<div id="go">
+		<div style="display: flex; justify-content: center; align-items: center;">
+			<div id="go-content">
+				<div id="countNum">
+					<p>3.. 2.. 1.. GO!</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="inGame">
+		<div class="game-rounds">
+			<P id="current-round"></P>
+		</div>
+		<div id="discount-timer">
+			<p id="discount"></p>
+		</div>
+	</div>
+
+	<div id="lobby-ui-container"></div>
+	<div id="lobby-timer-container"></div>
+	<div id="countdown-container"></div>
+
+	<div id="GameFinish">
+		<div id="GameFinishTable">
+			<div id="Rank">
+				<p id="RankNumber" class="rank-text">Rank #</p>
+				<div class="rectangle"></div>
+				<img src="build/assets/img/img.png" class="rank-image" alt="Rank Image">
+			</div>
+			<div style="margin-top: 45px;">
+				<table>
+					<tbody>
+						<tr>
+							<td>Wallet:0x1232..</td>
+							<td>Rank 1</td>
+							<td>Finish Time: 01:31:00</td>
+							<td>Points:32</td>
+							<td>Race ID:1789A</td>
+						</tr>
+						<tr>
+							<td>Wallet:0x1232..</td>
+							<td>Rank 1</td>
+							<td>Finish Time: 01:31:00</td>
+							<td>Points:32</td>
+							<td>Race ID:1789A</td>
+						</tr>
+						<tr>
+							<td>Wallet:0x1232..</td>
+							<td>Rank 1</td>
+							<td>Finish Time: 01:31:00</td>
+							<td>Points:32</td>
+							<td>Race ID:1789A</td>
+						</tr>
+						<tr>
+							<td>Wallet:0x1232..</td>
+							<td>Rank 1</td>
+							<td>Finish Time: 01:31:00</td>
+							<td>Points:32</td>
+							<td>Race ID:1789A</td>
+						</tr>
+						<tr>
+							<td>Wallet:0x1232..</td>
+							<td>Rank 1</td>
+							<td>Finish Time: 01:31:00</td>
+							<td>Points:32</td>
+							<td>Race ID:1789A</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div style="padding-top: 100px; padding-left: 250px;">
+				<button id="btn-raceAgain" style="font-family: revert;" disabled>RACE AGAIN!</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="gameSetting">
+		<div id="gearIcon"><img width="50px" height="50px" src="build/assets/img/gear.png" /></div>
+		<div id="settingPanel">
+			<div id="settingControl">
+				<div id="settingTitle">
+					<h1>Game Setting</h1>
+				</div>
+				<div id="settingMain">
+					<div class="settingOptions">
+						<div class="settingOne">
+							<input id="setting-shadow" type="checkbox" checked />
+							<label>Shadow</label>
+						</div>
+
+						<div class="settingOne">
+							<input id="setting-physics" type="checkbox" />
+							<label>Debug Physics</label>
+						</div>
+						<div class="settingOne">
+							<input id="setting-detection" type="checkbox" checked />
+							<label>Real time detection</label>
+						</div>
+						<div class="settingOne" style="flex-direction: columns;">
+							<label>Mouse Sensitive</label>
+							<input id="setting-mouse" type="range" style="width: 80px;" min="0" max="1" value="0.3" step="0.01" />
+						</div>
+					</div>
+					<div class="settingOptions">
+						<div class="settingOne">
+							<input id="setting-AA" type="checkbox" checked />
+							<label>Anti-alias</label>
+						</div>
+						<div class="settingOne">
+							<input id="setting-pointer" type="checkbox" />
+							<label>Pointer Lock</label>
+						</div>
+						<div class="settingOne">
+							<input id="setting-fps" type="checkbox" />
+							<label>Debug FPS</label>
+						</div>
+					</div>
+				</div>
+				<div id="setting-btns">
+					<button id="setting-reset">Reset Settings</button>
+					<button id="setting-okay">Okay</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script src="build/sketchbook.min.js"></script>
+	<script>
+		let worldKey = [];
+		let boxmanKey = [];
+		let carKey = [];
+		let heliKey = [];
+		let airplaneKey = [];
+
+		const searchParams = new URLSearchParams(window.location.search);
+		for (const param of searchParams) {
+			if (param[0]) {
+				let firstKey = param[1].split('-')[0];
+				let secondKey = param[1].split('-')[1];
+
+				if (param[0] === 'world') worldKey = [firstKey, secondKey];
+				if (param[0] === 'boxman') boxmanKey = [firstKey, secondKey];
+				if (param[0] === 'car') carKey = [firstKey, secondKey];
+				if (param[0] === 'heli') heliKey = [firstKey, secondKey];
+				if (param[0] === 'airplane') airplaneKey = [firstKey, secondKey];
+			}
+		}
+
+		if (worldKey.length !== 0) {
+			const world = new Sketchbook.World('https://dl.dropboxusercontent.com/scl/fi/' + worldKey[0] + '/world.glb?rlkey=' + worldKey[1] + '&dl=1', boxmanKey, carKey, heliKey, airplaneKey);
+		} else {
+			const world = new Sketchbook.World('build/assets/world.glb', boxmanKey, carKey, heliKey, airplaneKey);
+		}
+
+
+	</script>
+	<script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
+	<script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+	<script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
+	<script type="text/javascript"
+		src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+	<script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+</body>
+
+</html>
