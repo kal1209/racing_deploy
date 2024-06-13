@@ -17,6 +17,7 @@
 						black1: '#1E2E40',
 						'black1-hover': '#111A24',
 						black2: '#294360',
+						'black2-hover': 'rgb(27 50 74)',
 					}
 				}
 			}
@@ -53,7 +54,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="username" class="fixed top-1/2 left-1/2 transform translate-x-[-66%] translate-y-[-70%]">
+	<div id="username" class="fixed top-1/2 left-1/2 transform translate-x-[-66%] translate-y-[-70%] hidden">
 		<div class="-skew-x-12 bg-primary rounded-2xl rounded-tl-none w-[300px] h-[200px] p-4 pl-6">
 			<p class="font-bold text-xl">INPUT YOUR NAME</p>
 		</div>
@@ -71,7 +72,7 @@
 		</div>
 	</div>
 	<div id="roomDiv"
-		class="tabs fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] w-[650px] hidden">
+		class="tabs fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] w-[650px] flex flex-col hidden">
 		<div class="tabs-nav list-none items-center">
 			<li class="tab-active">
 				<a href="#gameRooms" id="matchMaker"
@@ -80,7 +81,8 @@
 				</a>
 			</li>
 			<li>
-				<a href="#createRoom" class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-6">New
+				<a href="#createRoom" id="create-room"
+					class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-6">New
 					Race
 				</a>
 			</li>
@@ -101,9 +103,12 @@
 					</tbody>
 				</table>
 				<span class="flex items-center">
-					<button class="h-[60px] w-[450px] bg-black1 right-skew-bottom-left-radius-border"></button>
+					<span class="h-[60px] w-[450px] bg-black1 right-skew-bottom-left-radius-border content-center">
+						<button id="play-demo" class="-skew-x-12 bg-black2 hover:bg-black2-hover text-white p-1 px-10 ml-10">play
+							demo</button>
+					</span>
 					<button id="joinOrCreateRoomBtn"
-						class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-10 ml-10">Start</button>
+						class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-10 ml-10">Join</button>
 				</span>
 			</div>
 			<div id="createRoom">
@@ -125,12 +130,24 @@
 					</span>
 				</span>
 				<span class="flex items-center">
-					<button class="h-[60px] w-[450px] bg-black1 right-skew-bottom-left-radius-border border-0"></button>
+					<span class="h-[60px] w-[450px] bg-black1 right-skew-bottom-left-radius-border content-center">
+						<button id="play-demo1" class="-skew-x-12 bg-black2 hover:bg-black2-hover text-white p-1 px-10 ml-10">play
+							demo</button>
+					</span>
 					<button id="createGameRoom"
 						class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-10 ml-10">Create</button>
 				</span>
 			</div>
 		</div>
+	</div>
+
+	<div id="minimized-room-div"
+		class="fixed bottom-0 left-1/2 transform translate-x-[-50%] translate-y-[-50%] min-w-[300px] hidden">
+		<button id="show-join-game" class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-3">Join Game
+		</button>
+		<button id="show-create-game" class="-skew-x-12 bg-black1 hover:bg-black1-hover text-white p-1 px-3">New
+			Race
+		</button>
 	</div>
 
 	<div id="selector">
@@ -183,7 +200,7 @@
 					<tr class="bg-black1">
 						<td colspan="2">
 							<div class="flex items-center py-4 ps-10 gap-20">
-								<div class="loader"></div>
+								<div class="loader1"></div>
 								<span>Waiting ...</span>
 							</div>
 						</td>
@@ -227,10 +244,23 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="grid justify-items-center">
-			<button id="btn-join-status"
+		<div class="flex justify-between">
+			<button id="btn-demo-play"
+				class="-skew-x-12 bg-black1 hover:bg-black1-hover text-white p-4 px-10 m-6 text-xl">Demo</button>
+			<button id="btn-ready-status"
 				class="-skew-x-12 bg-primary text-white p-4 hover:bg-primary-hover px-10 m-6 text-xl">Ready</button>
 		</div>
+	</div>
+
+	<div id="minimized-join-status"
+		class="fixed bottom-0 left-1/2 transform translate-x-[-50%] translate-y-[-50%] min-w-[300px] flex flex-row items-center hidden">
+		<div class="flex flex-col">
+			<span class="-skew-x-12 pb-2">Players Joining</span>
+			<div class="loader2"></div>
+		</div>
+		<button id="show-join-status"
+			class="-skew-x-12 bg-primary text-white p-4 hover:bg-primary-hover px-10 m-6 text-xl">Show
+		</button>
 	</div>
 
 	<div id="race" class="fixed top-1/2 left-1/2 transform translate-x-[-66%] translate-y-[-70%] flex flex-col hidden">
@@ -259,7 +289,7 @@
 					<tr class="bg-black1">
 						<td colspan="2">
 							<div class="flex items-center py-4 ps-10 gap-20">
-								<div class="loader"></div>
+								<div class="loader1"></div>
 								<span>Waiting ...</span>
 							</div>
 						</td>
