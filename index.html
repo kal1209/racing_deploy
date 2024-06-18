@@ -4,6 +4,7 @@
 <head>
 	<title>Racing Game</title>
 	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css" />
 	<script>
 		tailwind.config = {
 			theme: {
@@ -71,6 +72,19 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="play-multiplayer" class="fixed bottom-0 left-1/2 transform translate-x-[-50%] translate-y-[-50%] hidden">
+		<button id="btn-play-multiplayer" class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-3">Play
+			Multiplayer
+		</button>
+	</div>
+
+	<div id="connect-wallet" class="fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] hidden">
+		<button id="btn-connect-wallet" class="-skew-x-12 bg-primary text-white p-1 hover:bg-primary-hover px-3">Play
+			Connect Wallet
+		</button>
+	</div>
+
 	<div id="roomDiv"
 		class="tabs fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] w-[650px] flex flex-col hidden">
 		<div class="tabs-nav list-none items-center">
@@ -150,14 +164,142 @@
 		</button>
 	</div>
 
-	<div id="selector">
-		<div id="characterSelector">CHARACTER</div>
-		<div id="vehicleSelector">VEHICLE</div>
+	<div
+		class="fixed top-[100px] left-1/2 transform translate-x-[-50%] translate-y-[-50%] flex text-white -skew-x-12 items-center px-6 gap-6 hidden"
+		id="material-selection">
+		<button class="bg-primary p-2" type="button" data-ripple-light="true" data-dialog-target="character-dialog">
+			character
+		</button>
+		<button class="bg-primary p-2" type="button" data-ripple-light="true" data-dialog-target="car-dialog">
+			car
+		</button>
 	</div>
 
-	<div id="configuratorContainer">
-		<div id="configurator"></div>
-		<button id="confirmSelect">Okay</button>
+	<div data-dialog-backdrop="character-dialog" data-dialog-backdrop-close="true"
+		class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+		<div class="relative bg-black1 w-[1200px] flex flex-row" data-dialog="character-dialog">
+			<div class="basis-1/3">
+				<div class="flex flex-col gap-8 py-8 ps-10 pr-20">
+					<span class="rounded-2xl p-2 bg-black2 -skew-x-12 w-3/4">
+						<img src="src/img/character1.png" alt="user-avatar" width="150" class="rounded-2xl">
+					</span>
+					<span class="rounded-2xl p-2 bg-primary -skew-x-12 w-3/4">
+						<img src="src/img/character1.png" alt="user-avatar" width="150" class="rounded-2xl">
+					</span>
+					<span class="rounded-2xl p-2 bg-black2 -skew-x-12 w-3/4">
+						<img src="src/img/character1.png" alt="user-avatar" width="150" class="rounded-2xl">
+					</span>
+					<span class="rounded-2xl p-2 bg-black2 -skew-x-12 w-3/4">
+						<img src="src/img/character1.png" alt="user-avatar" width="150" class="rounded-2xl">
+					</span>
+				</div>
+			</div>
+			<div class="basis-1/3 flex items-center">
+				<div class="p-4">
+					<img src="src/img/character1.png" alt="user-avatar" class="rounded-xl">
+				</div>
+			</div>
+			<div class="basis-1/3 grid content-between">
+				<div class="pl-20">
+					<div class="bg-primary text-white px-2 py-1 mr-1 -skew-x-12 text-center">
+						character name
+					</div>
+					<div class="p-6 pt-12">
+						<table class="-skew-x-12 w-full text-center">
+							<thead class="bg-secondary">
+								<td>current</td>
+								<td>new</td>
+							</thead>
+							<tbody class="bg-black2">
+								<tr>
+									<td>rank 900</td>
+									<td>1300</td>
+								</tr>
+								<tr>
+									<td>speed 7</td>
+									<td>9</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="flex justify-center">
+					<button class="bg-primary text-white px-12 py-4 hover:bg-primary-hover -skew-x-12 text-2xl tracking-widest"
+						data-dialog-close="true">
+						$ 50
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div data-dialog-backdrop="car-dialog" data-dialog-backdrop-close="true"
+		class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+		<div class="relative bg-black1 w-[1200px] flex flex-row" data-dialog="car-dialog">
+			<div class="basis-1/3">
+				<div class="flex flex-col gap-8 py-8 ps-10 pr-20">
+					<span class="rounded-2xl p-2 bg-black2 -skew-x-12 w-3/4">
+						<img src="src/img/car2.png" alt="user-avatar" width="200" class="rounded-2xl">
+					</span>
+					<span class="rounded-2xl p-2 bg-primary -skew-x-12 w-3/4">
+						<img src="src/img/car2.png" alt="user-avatar" width="200" class="rounded-2xl">
+					</span>
+					<span class="rounded-2xl p-2 bg-black2 -skew-x-12 w-3/4">
+						<img src="src/img/car2.png" alt="user-avatar" width="200" class="rounded-2xl">
+					</span>
+					<span class="rounded-2xl p-2 bg-black2 -skew-x-12 w-3/4">
+						<img src="src/img/car2.png" alt="user-avatar" width="200" class="rounded-2xl">
+					</span>
+				</div>
+			</div>
+			<div class="basis-1/3 flex items-center">
+				<div class="p-4">
+					<img src="src/img/car-model1.png" alt="user-avatar" class="rounded-xl">
+				</div>
+			</div>
+			<div class="basis-1/3 grid content-between">
+				<div class="pl-20">
+					<div class="bg-primary text-white px-2 py-1 mr-1 -skew-x-12 text-center">
+						character name
+					</div>
+					<div class="p-6 pt-12">
+						<table class="-skew-x-12 w-full text-right">
+							<thead class="bg-secondary">
+								<td>current</td>
+								<td>new</td>
+							</thead>
+							<tbody class="bg-black2">
+								<tr>
+									<td>rank 900</td>
+									<td>1300</td>
+								</tr>
+								<tr>
+									<td>horsepower 458</td>
+									<td>950</td>
+								</tr>
+								<tr>
+									<td>torque 375</td>
+									<td>507</td>
+								</tr>
+								<tr>
+									<td>torque rpm 5000</td>
+									<td>8100</td>
+								</tr>
+								<tr>
+									<td>mass 1100</td>
+									<td>1328</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="flex justify-center">
+					<button class="bg-primary text-white px-12 py-4 hover:bg-primary-hover -skew-x-12 text-2xl tracking-widest"
+						data-dialog-close="true">
+						$ 50
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div id="wallet-page"
@@ -172,17 +314,14 @@
 			<div
 				class="absolute top-16 -skew-x-12 bg-secondary rounded-2xl rounded-tl-none w-[400px] h-[140px] content-center">
 				<div class="flex justify-center">
-					<input name="ticket-number" type="text" class="p-2 text-black outline-none placeholder-black1" type="text"
-						placeholder="Input ticket number" />
+					<input name="ticket-number" type="text"
+						class="p-2 text-black outline-none placeholder-black1 disabled:bg-white" type="text"
+						placeholder="Input ticket number" value="20 tickets" disabled />
 					<button id="btn-stash" class="bg-black1 text-white px-8 py-1 hover:bg-black1-hover font-bold">
 						buy
 					</button>
 				</div>
 			</div>
-		</div>
-		<div>
-			<!-- <a id="btn-wallet">Connect Wallet</a> -->
-			<a>Connect Wallet</a>
 		</div>
 	</div>
 
@@ -253,14 +392,67 @@
 	</div>
 
 	<div id="minimized-join-status"
-		class="fixed bottom-0 left-1/2 transform translate-x-[-50%] translate-y-[-50%] min-w-[300px] flex flex-row items-center hidden">
-		<div class="flex flex-col">
-			<span class="-skew-x-12 pb-2">Players Joining</span>
-			<div class="loader2"></div>
+		class="fixed bottom-0 right-0 transform translate-x-[-10%] w-[300px] flex flex-col hidden">
+		<div
+			class="rounded-se-2xl bg-primary hover:bg-primary-hover py-4 right-skew-top-right-radius-border w-[200px] grid justify-items-center">
+			<span class="-skew-x-12">
+				Waiting for players
+			</span>
 		</div>
-		<button id="show-join-status"
-			class="-skew-x-12 bg-primary text-white p-4 hover:bg-primary-hover px-10 m-6 text-xl">Show
-		</button>
+		<div class="rounded-se-[30px] overflow-hidden">
+			<table class="w-full">
+				<tbody>
+					<tr class="bg-black1">
+						<td colspan="2">
+							<div class="flex items-center py-4 ps-10 gap-20">
+								<div class="loader1"></div>
+								<span>Waiting ...</span>
+							</div>
+						</td>
+					</tr>
+					<tr class="bg-black2">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="30" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-lg">Alex</span>
+						</td>
+					</tr>
+					<tr class="bg-black1">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="30" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-lg">Robert</span>
+						</td>
+					</tr>
+					<tr class="bg-black2">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="30" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-lg">Yashiro</span>
+						</td>
+					</tr>
+					<tr class="bg-black1">
+						<td class="w-20"></td>
+						<td class="flex items-center gap-4 py-2">
+							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+								<img src="src/img/avatar1.png" alt="user-avatar" width="30" class="rounded-xl">
+							</span>
+							<span id="player_name" class="text-lg">Nishan</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="flex justify-center">
+			<button id="show-join-status"
+				class="-skew-x-12 bg-black1 hover:bg-black1-hover text-white p-4 px-10 m-2 text-lg">Show</button>
+		</div>
 	</div>
 
 	<div id="race" class="fixed top-1/2 left-1/2 transform translate-x-[-66%] translate-y-[-70%] flex flex-col hidden">
@@ -503,6 +695,7 @@
 	<script type="text/javascript"
 		src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
 	<script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+	<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/dialog.js"></script>
 </body>
 
 </html>
