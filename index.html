@@ -325,74 +325,7 @@
 		</div>
 	</div>
 
-	<div id="join-status"
-		class="fixed top-1/2 left-1/2 transform translate-x-[-50%] translate-y-[-50%] w-[650px] flex flex-col hidden">
-		<div
-			class="rounded-se-2xl bg-primary hover:bg-primary-hover px-10 py-4 right-skew-top-right-radius-border text-2xl w-[450px] grid justify-items-center">
-			<span class="-skew-x-12">
-				Waiting for players
-			</span>
-		</div>
-		<div class="rounded-se-[70px] overflow-hidden">
-			<table class="w-full">
-				<tbody>
-					<tr class="bg-black1">
-						<td colspan="2">
-							<div class="flex items-center py-4 ps-10 gap-20">
-								<div class="loader1"></div>
-								<span>Waiting ...</span>
-							</div>
-						</td>
-					</tr>
-					<tr class="bg-black2">
-						<td class="w-20"></td>
-						<td class="flex items-center gap-4 py-2">
-							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
-								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
-							</span>
-							<span id="player_name" class="text-xl">Alex</span>
-						</td>
-					</tr>
-					<tr class="bg-black1">
-						<td class="w-20"></td>
-						<td class="flex items-center gap-4 py-2">
-							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
-								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
-							</span>
-							<span id="player_name" class="text-xl">Robert</span>
-						</td>
-					</tr>
-					<tr class="bg-black2">
-						<td class="w-20"></td>
-						<td class="flex items-center gap-4 py-2">
-							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
-								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
-							</span>
-							<span id="player_name" class="text-xl">Yashiro</span>
-						</td>
-					</tr>
-					<tr class="bg-black1">
-						<td class="w-20"></td>
-						<td class="flex items-center gap-4 py-2">
-							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
-								<img src="src/img/avatar1.png" alt="user-avatar" width="40" class="rounded-xl">
-							</span>
-							<span id="player_name" class="text-xl">Nishan</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="flex justify-between">
-			<button id="btn-demo-play"
-				class="-skew-x-12 bg-black1 hover:bg-black1-hover text-white p-4 px-10 m-6 text-xl">Demo</button>
-			<button id="btn-ready-status"
-				class="-skew-x-12 bg-primary text-white p-4 hover:bg-primary-hover px-10 m-6 text-xl">Ready</button>
-		</div>
-	</div>
-
-	<div id="minimized-join-status"
-		class="fixed bottom-0 right-0 transform translate-x-[-10%] w-[300px] flex flex-col hidden">
+	<div id="join-status" class="fixed bottom-8 right-0 transform translate-x-[-10%] w-[300px] flex flex-col hidden">
 		<div
 			class="rounded-se-2xl bg-primary hover:bg-primary-hover py-4 right-skew-top-right-radius-border w-[200px] grid justify-items-center">
 			<span class="-skew-x-12">
@@ -413,45 +346,41 @@
 					<tr class="bg-black2">
 						<td class="w-20"></td>
 						<td class="flex items-center gap-4 py-2">
-							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+							<span class="rounded-b-xl rounded-se-xl p-1 bg-primary">
 								<img src="src/img/avatar1.png" alt="user-avatar" width="30" class="rounded-xl">
 							</span>
-							<span id="player_name" class="text-lg">Alex</span>
+							<span class="text-lg">Alex</span>
 						</td>
 					</tr>
 					<tr class="bg-black1">
 						<td class="w-20"></td>
 						<td class="flex items-center gap-4 py-2">
-							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+							<span class="rounded-b-xl rounded-se-xl p-1 bg-primary">
 								<img src="src/img/avatar1.png" alt="user-avatar" width="30" class="rounded-xl">
 							</span>
-							<span id="player_name" class="text-lg">Robert</span>
+							<span class="text-lg">Robert</span>
 						</td>
 					</tr>
 					<tr class="bg-black2">
 						<td class="w-20"></td>
 						<td class="flex items-center gap-4 py-2">
-							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+							<span class="rounded-b-xl rounded-se-xl p-1 bg-primary">
 								<img src="src/img/avatar1.png" alt="user-avatar" width="30" class="rounded-xl">
 							</span>
-							<span id="player_name" class="text-lg">Yashiro</span>
+							<span class="text-lg">Yashiro</span>
 						</td>
 					</tr>
 					<tr class="bg-black1">
 						<td class="w-20"></td>
 						<td class="flex items-center gap-4 py-2">
-							<span id="player_avatar" class="rounded-b-xl rounded-se-xl p-1 bg-primary">
+							<span class="rounded-b-xl rounded-se-xl p-1 bg-primary">
 								<img src="src/img/avatar1.png" alt="user-avatar" width="30" class="rounded-xl">
 							</span>
-							<span id="player_name" class="text-lg">Nishan</span>
+							<span class="text-lg">Nishan</span>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
-		<div class="flex justify-center">
-			<button id="show-join-status"
-				class="-skew-x-12 bg-black1 hover:bg-black1-hover text-white p-4 px-10 m-2 text-lg">Show</button>
 		</div>
 	</div>
 
@@ -460,11 +389,6 @@
 			<p class="font-bold text-xl">Get Ready to Race!</p>
 		</div>
 		<div class="absolute top-16 -skew-x-12 bg-secondary rounded-2xl w-[400px] h-[140px] content-center">
-			<div class="flex justify-center">
-				<button id="btn-race" class="bg-black1 text-white px-8 py-3 hover:bg-black1-hover font-bold">
-					Start
-				</button>
-			</div>
 		</div>
 	</div>
 	<div id="ready"
@@ -560,7 +484,7 @@
 			<div id="Rank">
 				<p id="RankNumber" class="rank-text">Rank #</p>
 				<div class="rectangle"></div>
-				<img src="src/img/img.png" class="rank-image" alt="Rank Image">
+				<img src="build/assets/img/img.png" class="rank-image" alt="Rank Image">
 			</div>
 			<div style="margin-top: 45px;">
 				<table>
@@ -610,7 +534,7 @@
 	</div>
 
 	<div id="gameSetting">
-		<div id="gearIcon"><img width="50px" height="50px" src="src/img/gear.png" /></div>
+		<div id="gearIcon"><img width="50px" height="50px" src="build/assets/img/gear.png" /></div>
 		<div id="settingPanel">
 			<div id="settingControl">
 				<div id="settingTitle">
